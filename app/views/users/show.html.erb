@@ -13,6 +13,7 @@
   <li>
     <h3><%= event.name %></h3>
     <p>At <%= event.location %> - <%= event.date %></p>
+    <%= link_to "Check it out", event_path(event)%>
   </li>
 <% end %>
 </ul>

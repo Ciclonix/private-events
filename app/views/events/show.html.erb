@@ -1,0 +1,7 @@
+<%= link_to "All events", events_path %><br>
+<% if user_signed_in? %>
+  <%= link_to "Your events", user_path(current_user)%>
+<% end %>
+
+<h3><%= @event.name %> - by <%= @event.creator.name %></h3>
+<p>At <%= @event.location %> - <%= @event.date %></p>
