@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: { minimum: 3 }
+
+  has_many :events, foreign_key: "creator_id", class_name: "Event"
 end
