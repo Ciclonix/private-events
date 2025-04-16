@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3 }
 
   has_many :events, foreign_key: "creator_id", class_name: "Event"
+  has_many :sign_ups, foreign_key: :attendee_id
+  has_many :events_attended, through: :sign_ups
 end

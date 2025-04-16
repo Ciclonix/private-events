@@ -17,4 +17,5 @@ Rails.application.routes.draw do
 
   resources :events, only: [ :index, :show, :new, :create ]
   resources :users, only: [ :show ]
+  resources :sign_ups, only: [ :create ]
 end
