@@ -1,0 +1,10 @@
+<h2>Here's a list of events created by <%= User.name %>:</h2><br>
+
+<ul>
+<% for event in @user.events %>
+  <li>
+    <h3><%= event.name %></h3>
+    <h4><%= event.date %></h4>
+  </li>
+<% end %>
+</ul>
