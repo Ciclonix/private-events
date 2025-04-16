@@ -1,10 +1,18 @@
-<h2>Here's a list of events created by <%= User.name %>:</h2><br>
+<%= link_to "All events", events_path %><br>
+<% if user_signed_in? %>
+  <%= link_to "Create new event", new_event_path%><br>
+  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+<% else %>
+  <p><%= link_to "Sign In", new_user_session_path %> to create or participate in events</p>
+<% end%>
+
+<h2>All events created by <%= @user.name %>:</h2><br>
 
 <ul>
 <% for event in @user.events %>
   <li>
     <h3><%= event.name %></h3>
-    <h4><%= event.date %></h4>
+    <p>At <%= event.location %> - <%= event.date %></p>
   </li>
 <% end %>
 </ul>
