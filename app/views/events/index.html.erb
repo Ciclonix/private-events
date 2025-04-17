@@ -7,4 +7,7 @@
 
 <h1>Welcome!</h1>
 <h2>All available events:</h2>
-<%= render partial: "event_list", locals: {events: @events} %>
+<%= render partial: "event_list", locals: {events: @events.future} %>
+<br>
+<h2>All past events:</h2>
+<%= render partial: "event_list", locals: {events: @events.past} %>

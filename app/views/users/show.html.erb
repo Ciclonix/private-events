@@ -11,12 +11,6 @@
 <br>
 <h2>All events attended by <%= @user.name %></h2>
 <h3>Future events:</h3>
-<%=
-  render partial: "events/event_list",
-  locals: {events: @user.event_attendeds.where("date > ?", DateTime.now)}
-%>
+<%= render partial: "events/event_list", locals: {events: @user.event_attendeds.future} %>
 <h3>Past events:</h3>
-<%=
-  render partial: "events/event_list",
-  locals: {events: @user.event_attendeds.where("date < ?", DateTime.now)}
-%>
+<%= render partial: "events/event_list", locals: {events: @user.event_attendeds.past} %>
