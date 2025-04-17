@@ -7,13 +7,7 @@
 <% end%>
 
 <h2>All events created by <%= @user.name %>:</h2><br>
+<%= render partial: "events/event_list", locals: {events: @user.events} %>
 
-<ul>
-<% for event in @user.events %>
-  <li>
-    <h3><%= event.name %></h3>
-    <p>At <%= event.location %> - <%= event.date %></p>
-    <%= link_to "Check it out", event_path(event)%>
-  </li>
-<% end %>
-</ul>
+<h2>All events attended by <%= @user.name %>:</h2>
+<%= render partial: "events/event_list", locals: {events: @user.event_attendeds} %>

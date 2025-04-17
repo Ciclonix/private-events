@@ -7,13 +7,4 @@
 
 <h1>Welcome!</h1>
 <h2>Here's a list of all available events:</h2><br>
-
-<ul>
-<% for event in @events %>
-  <li>
-    <h3><%= event.name %> - by <%= event.creator.name %></h3>
-    <p>At <%= event.location %> - <%= event.date %></p>
-    <%= link_to "Check it out", event_path(event)%>
-  </li>
-<% end %>
-</ul>
+<%= render partial: "event_list", locals: {events: @events} %>

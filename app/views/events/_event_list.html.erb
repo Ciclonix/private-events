@@ -1,0 +1,9 @@
+<ul>
+<% for event in events %>
+  <li>
+    <h3><%= event.name %></h3>
+    <p>At <%= event.location %> - <%= event.date %> - 
+    <%= link_to "Check it out", event_path(event)%></p>
+  </li>
+<% end %>
+</ul>
