@@ -6,8 +6,17 @@
   <p><%= link_to "Sign In", new_user_session_path %> to create or participate in events</p>
 <% end%>
 
-<h2>All events created by <%= @user.name %>:</h2><br>
+<h2>All events created by <%= @user.name %></h2>
 <%= render partial: "events/event_list", locals: {events: @user.events} %>
-
-<h2>All events attended by <%= @user.name %>:</h2>
-<%= render partial: "events/event_list", locals: {events: @user.event_attendeds} %>
+<br>
+<h2>All events attended by <%= @user.name %></h2>
+<h3>Future events:</h3>
+<%=
+  render partial: "events/event_list",
+  locals: {events: @user.event_attendeds.where("date > ?", DateTime.now)}
+%>
+<h3>Past events:</h3>
+<%=
+  render partial: "events/event_list",
+  locals: {events: @user.event_attendeds.where("date < ?", DateTime.now)}
+%>
