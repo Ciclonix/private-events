@@ -3,7 +3,7 @@ class SignUpsController < ApplicationController
 
   def create
     @signup = SignUp.new
-    @signup.event_attended_id = params[:sign_up][:event_attended_id]
+    @signup.event_attended_id = params[:sign_up][:id]
     @signup.attendee = current_user
     if @signup.save
       flash[:notice] = "You have joined the event!"
@@ -11,5 +11,13 @@ class SignUpsController < ApplicationController
       flash[:alert] = "Could not join event!"
     end
     redirect_to event_path(@signup.event_attended)
+  end
+
+  def destroy
+    @signup = SignUp.find_by event_attended_id: params[:id], attendee: current_user
+    @event = @signup.event_attended
+    @signup.destroy
+    flash[:notice] = "You have left the event"
+    redirect_to event_path(@event)
   end
 end

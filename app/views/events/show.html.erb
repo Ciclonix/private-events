@@ -1,10 +1,18 @@
 <%= link_to "All events", events_path %><br>
 <% if user_signed_in? %>
-  <%= link_to "Your events", user_path(current_user)%>
-  <% unless @event.attendees.include? current_user %>
-    <%= form_with model: SignUp.new do |signup| %>
-      <%= signup.hidden_field :event_attended_id, value: @event.id %>
-      <%= signup.submit "Join event" %>
+  <%= link_to "Your events", user_path(current_user) %>
+  <% if @event.date > DateTime.now %>
+    <br>
+    <% unless @event.attendees.include? current_user %>
+      <%= form_with model: SignUp.new do |signup| %>
+        <%= signup.hidden_field :id, value: @event.id %>
+        <%= signup.submit "Join event" %>
+      <% end %>
+    <% else %>
+      <%=
+        link_to "Leave event", url_for(action: :destroy, controller: :sign_ups),
+        data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+      %>
     <% end %>
   <% end %>
 <% end %>
